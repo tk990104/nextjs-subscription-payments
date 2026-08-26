@@ -14,6 +14,9 @@ for a commercial gematria research platform.
   is hard-coded into application code.
 - Supabase Row Level Security isolates histories, preferences, custom ciphers,
   and research tables by authenticated user.
+- Paid-feature writes run through authenticated server routes. Atomic PostgreSQL
+  functions enforce history, research-table, and daily corpus-search limits;
+  those functions are executable only by the Supabase service role.
 
 ## Database matching model
 
@@ -23,10 +26,19 @@ This keeps exact-match searches fast without calculating every phrase during a
 request. Corpus writes and usage-counter writes are reserved for trusted server
 code.
 
+## Implemented application paths
+
+- `/calculator` calculates locally, saves authenticated history, and runs
+  quota-controlled exact-value searches against the phrase corpus.
+- `/research` creates plan-limited research tables and stores independently
+  recalculated phrases with notes and source URLs.
+- `/api/gematria/*` resolves entitlements from the active Stripe product's
+  `gematria_plan` metadata and never trusts results or limits from the browser.
+
 ## Next milestone
 
-1. Connect authenticated calculation history and saved research tables.
-2. Add the custom-cipher editor and enforce plan limits on the server.
-3. Create the database-match API with atomic daily quota consumption.
-4. Expand the clean-room cipher catalog with compatibility fixtures.
-5. Add Astronomy Engine behind the AstroNumeric entitlement.
+1. Add the custom-cipher editor through the same service-role write boundary.
+2. Build an administrator corpus importer and precomputation job.
+3. Expand the clean-room cipher catalog with compatibility fixtures.
+4. Add Astronomy Engine behind the AstroNumeric entitlement.
+5. Generate fresh database types after applying both gematria migrations.
