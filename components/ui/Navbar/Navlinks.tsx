@@ -23,6 +23,9 @@ export default function Navlinks({ user }: NavlinksProps) {
           <Logo />
         </Link>
         <nav className="ml-6 space-x-2 lg:block">
+          <Link href="/calculator" className={s.link}>
+            Calculator
+          </Link>
           <Link href="/" className={s.link}>
             Pricing
           </Link>

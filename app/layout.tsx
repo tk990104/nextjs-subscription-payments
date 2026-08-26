@@ -6,8 +6,9 @@ import { PropsWithChildren, Suspense } from 'react';
 import { getURL } from '@/utils/helpers';
 import 'styles/main.css';
 
-const title = 'Next.js Subscription Starter';
-const description = 'Brought to you by Vercel, Stripe, and Supabase.';
+const title = 'Gematria Research Platform';
+const description =
+  'Calculate, compare, and organize gematria research in one workspace.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(getURL()),
