@@ -68,7 +68,28 @@ export type ResearchShareRow = {
   created_at: string;
 };
 
+export type AstroEventRow = {
+  id: string;
+  user_id: string;
+  event_name: string;
+  event_time: string;
+  location_name: string | null;
+  latitude: number;
+  longitude: number;
+  chart: Json;
+  gematria_results: Json;
+  created_at: string;
+};
+
 type GematriaTables = {
+  astro_events: TableDefinition<
+    AstroEventRow,
+    Omit<AstroEventRow, 'id' | 'created_at'> & {
+      id?: string;
+      created_at?: string;
+    },
+    Record<string, never>
+  >;
   user_preferences: TableDefinition<
     UserPreferencesRow,
     Omit<UserPreferencesRow, 'created_at' | 'updated_at'> & {
@@ -174,6 +195,25 @@ type GematriaTables = {
 };
 
 type GematriaFunctions = {
+  save_astro_event_with_limit: {
+    Args: {
+      p_user_id: string;
+      p_event_name: string;
+      p_event_time: string;
+      p_location_name: string | null;
+      p_latitude: number;
+      p_longitude: number;
+      p_chart: Json;
+      p_gematria_results: Json;
+      p_limit: number;
+    };
+    Returns: {
+      id: string | null;
+      created_at: string | null;
+      allowed: boolean;
+      event_count: number;
+    }[];
+  };
   create_research_share: {
     Args: { p_user_id: string; p_table_id: string };
     Returns: { token: string; created_at: string }[];

@@ -16,6 +16,7 @@ describe('subscription entitlements', () => {
       'astronumeric'
     );
     expect(PLAN_ENTITLEMENTS.astronumeric.features.astronomy).toBe(true);
+    expect(PLAN_ENTITLEMENTS.astronumeric.limits.astroEvents).toBe(1000);
   });
 
   it('treats a null quota as unlimited', () => {

@@ -51,7 +51,7 @@ subscription resolve to Free.
 2. Apply migrations and seed the corpus.
 3. Create Stripe test-mode products and register the webhook endpoint.
 4. Deploy the application and complete sign-up, checkout, cancellation, quota,
-   custom-cipher, history, research-table, CSV-export, and share-link smoke
-   tests.
+   custom-cipher, history, research-table, CSV-export, share-link, and
+   AstroNumeric event-chart smoke tests.
 5. Confirm RLS with both a Free account and a paid test account.
 6. Only then create live-mode Stripe prices and replace test credentials.

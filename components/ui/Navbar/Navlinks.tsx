@@ -32,6 +32,9 @@ export default function Navlinks({ user }: NavlinksProps) {
           <Link href="/ciphers" className={s.link}>
             Ciphers
           </Link>
+          <Link href="/astronumeric" className={s.link}>
+            AstroNumeric
+          </Link>
           <Link href="/" className={s.link}>
             Pricing
           </Link>

@@ -20,6 +20,7 @@ export interface PlanEntitlements {
     historyEntries: number;
     customCiphers: number;
     customTables: number;
+    astroEvents: number;
   };
   features: Readonly<Record<FeatureKey, boolean>>;
 }
@@ -33,7 +34,8 @@ export const PLAN_ENTITLEMENTS: Readonly<Record<PlanId, PlanEntitlements>> =
         databaseMatchesPerDay: 10,
         historyEntries: 50,
         customCiphers: 0,
-        customTables: 0
+        customTables: 0,
+        astroEvents: 0
       },
       features: {
         databaseMatch: true,
@@ -55,7 +57,8 @@ export const PLAN_ENTITLEMENTS: Readonly<Record<PlanId, PlanEntitlements>> =
         databaseMatchesPerDay: 100,
         historyEntries: 1000,
         customCiphers: 8,
-        customTables: 4
+        customTables: 4,
+        astroEvents: 0
       },
       features: {
         databaseMatch: true,
@@ -77,7 +80,8 @@ export const PLAN_ENTITLEMENTS: Readonly<Record<PlanId, PlanEntitlements>> =
         databaseMatchesPerDay: null,
         historyEntries: 5000,
         customCiphers: 50,
-        customTables: 20
+        customTables: 20,
+        astroEvents: 0
       },
       features: {
         databaseMatch: true,
@@ -99,7 +103,8 @@ export const PLAN_ENTITLEMENTS: Readonly<Record<PlanId, PlanEntitlements>> =
         databaseMatchesPerDay: null,
         historyEntries: 10000,
         customCiphers: 100,
-        customTables: 50
+        customTables: 50,
+        astroEvents: 1000
       },
       features: {
         databaseMatch: true,

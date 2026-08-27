@@ -35,6 +35,10 @@ code.
   and can publish revocable, unguessable read-only report links.
 - `/admin/corpus` imports and exports CSV batches for an explicit server-side
   administrator allowlist; imports recalculate all built-in values server-side.
+- `/astronumeric` combines event-name gematria with tropical positions for the
+  Sun, Moon, and eight planets, lunar phase, direct/retrograde motion, local
+  horizon coordinates, and major aspects. Full charts can be saved only by the
+  AstroNumeric plan.
 - `/ciphers` creates plan-limited alphabet ciphers, previews their values, and
   adds valid definitions to calculator and saved-result calculations.
 - `/api/gematria/*` resolves entitlements from the active Stripe product's
@@ -47,11 +51,16 @@ code.
   AstroNumeric subscribers can persist their default built-in/custom set.
 - `data/corpus.seed.json` and `scripts/build-corpus-seed.mjs` provide a
   reproducible starter phrase index with every built-in cipher precomputed.
+- Astronomy calculations use the MIT-licensed Astronomy Engine 2.1.19 build
+  pinned from `tk990104/astronomy` at commit
+  `865d3da7d8112bbc7911238052c6af4aaf877181`. Provenance and update guidance
+  live in `vendor/astronomy-engine.SOURCE.md`.
 
 ## Next milestone
 
 1. Apply and smoke-test all migrations against the selected Supabase project.
 2. Add historical cipher families only after their definitions have verified
    compatibility fixtures and provenance notes.
-3. Add Astronomy Engine behind the AstroNumeric entitlement.
+3. Add house systems, fixed stars, and configurable aspect sets after their
+   calculation conventions are documented and tested.
 4. Generate fresh database types from the deployed schema.
