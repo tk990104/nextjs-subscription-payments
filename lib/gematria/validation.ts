@@ -1,4 +1,4 @@
-import { CORE_CIPHERS } from './ciphers';
+import { BUILT_IN_CIPHERS } from './ciphers';
 import { customCipherDefinition } from './custom';
 import type { NumberMode } from './types';
 
@@ -74,7 +74,7 @@ export function parseResearchEntryInput(input: unknown) {
 export function parseMatchInput(input: unknown) {
   const body = objectInput(input);
   const cipherId = cleanString(body.cipherId, 'Cipher', 80) as string;
-  if (!CORE_CIPHERS.some((cipher) => cipher.id === cipherId)) {
+  if (!BUILT_IN_CIPHERS.some((cipher) => cipher.id === cipherId)) {
     throw new GematriaValidationError('Cipher is not supported.');
   }
   if (
@@ -85,6 +85,27 @@ export function parseMatchInput(input: unknown) {
     throw new GematriaValidationError('Value must be a non-negative integer.');
   }
   return { cipherId, value: body.value };
+}
+
+export function parseCipherPreferencesInput(
+  input: unknown,
+  allowedCipherIds: ReadonlySet<string>
+) {
+  const body = objectInput(input);
+  if (!Array.isArray(body.cipherIds)) {
+    throw new GematriaValidationError('Cipher selection must be an array.');
+  }
+  const cipherIds = [...new Set(body.cipherIds)];
+  if (
+    cipherIds.length === 0 ||
+    cipherIds.length > 64 ||
+    cipherIds.some((id) => typeof id !== 'string' || !allowedCipherIds.has(id))
+  ) {
+    throw new GematriaValidationError(
+      'Select between 1 and 64 available ciphers.'
+    );
+  }
+  return { cipherIds: cipherIds as string[] };
 }
 
 export function parseCustomCipherInput(input: unknown) {

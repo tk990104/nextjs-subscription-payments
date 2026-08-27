@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   GematriaValidationError,
+  parseCipherPreferencesInput,
   parseCustomCipherInput,
   parseMatchInput,
   parsePhraseInput,
@@ -13,6 +14,24 @@ describe('gematria request validation', () => {
     expect(parsePhraseInput({ phrase: '  Gematria  ' })).toEqual({
       phrase: 'Gematria'
     });
+  });
+
+  it('validates and deduplicates cipher preferences', () => {
+    expect(
+      parseCipherPreferencesInput(
+        { cipherIds: ['english-ordinal', 'english-ordinal', 'primes'] },
+        new Set(['english-ordinal', 'primes'])
+      )
+    ).toEqual({ cipherIds: ['english-ordinal', 'primes'] });
+  });
+
+  it('rejects unavailable cipher preferences', () => {
+    expect(() =>
+      parseCipherPreferencesInput(
+        { cipherIds: ['custom:not-mine'] },
+        new Set(['english-ordinal'])
+      )
+    ).toThrow('Select between 1 and 64 available ciphers.');
   });
 
   it('rejects empty phrases', () => {

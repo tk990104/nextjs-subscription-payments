@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import Calculator from '@/components/gematria/Calculator';
 import { PLAN_ENTITLEMENTS, planFromProductMetadata } from '@/lib/entitlements';
 import { getUserCustomCiphers } from '@/lib/gematria/server';
+import { DEFAULT_CIPHER_IDS } from '@/lib/gematria';
 import { getSubscription, getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
+import type { UserPreferencesRow } from '@/types_gematria';
 
 export const metadata: Metadata = {
   title: 'Calculator | Gematria Research Platform',
-  description: 'Compare phrases across foundational English gematria ciphers.'
+  description: 'Compare phrases across a clean-room English cipher catalog.'
 };
 
 export default async function CalculatorPage() {
@@ -28,6 +30,18 @@ export default async function CalculatorPage() {
     user && PLAN_ENTITLEMENTS[planId].features.customCiphers
       ? await getUserCustomCiphers(supabase)
       : [];
+  let initialCipherIds = [...DEFAULT_CIPHER_IDS];
+  if (user && PLAN_ENTITLEMENTS[planId].features.savedPreferences) {
+    const { data } = await supabase
+      .from('user_preferences')
+      .select('default_cipher_ids')
+      .maybeSingle();
+    const preferences = data as Pick<
+      UserPreferencesRow,
+      'default_cipher_ids'
+    > | null;
+    if (preferences) initialCipherIds = preferences.default_cipher_ids;
+  }
 
   return (
     <Calculator
@@ -35,6 +49,7 @@ export default async function CalculatorPage() {
       plan={PLAN_ENTITLEMENTS[planId]}
       initialHistory={history ?? []}
       customCiphers={customCiphers}
+      initialCipherIds={initialCipherIds}
     />
   );
 }

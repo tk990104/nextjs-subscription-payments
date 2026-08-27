@@ -1,6 +1,6 @@
 import { createClient as createSupabaseAdmin } from '@supabase/supabase-js';
 import { PLAN_ENTITLEMENTS, planFromProductMetadata } from '@/lib/entitlements';
-import { CORE_CIPHERS } from '@/lib/gematria/ciphers';
+import { BUILT_IN_CIPHERS } from '@/lib/gematria/ciphers';
 import { customCipherFromStored } from '@/lib/gematria/custom';
 import { getSubscription, getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
@@ -65,6 +65,6 @@ export async function getUserCalculationCiphers(
   includeCustomCiphers: boolean
 ) {
   return includeCustomCiphers
-    ? [...CORE_CIPHERS, ...(await getUserCustomCiphers(supabase))]
-    : [...CORE_CIPHERS];
+    ? [...BUILT_IN_CIPHERS, ...(await getUserCustomCiphers(supabase))]
+    : [...BUILT_IN_CIPHERS];
 }

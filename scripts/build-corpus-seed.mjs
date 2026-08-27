@@ -2,12 +2,49 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-const ordinal = Object.fromEntries(
-  [...alphabet].map((letter, index) => [letter, index + 1])
-);
-const reverseOrdinal = Object.fromEntries(
-  [...alphabet].map((letter, index) => [letter, 26 - index])
-);
+const ordinalValues = [...alphabet].map((_, index) => index + 1);
+const reverseOrdinalValues = [...ordinalValues].reverse();
+const extendedValues = ordinalValues.map((value) => {
+  if (value <= 9) return value;
+  if (value <= 18) return (value - 9) * 10;
+  return (value - 18) * 100;
+});
+const primeValues = [
+  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+  73, 79, 83, 89, 97, 101
+];
+
+function mappings(values) {
+  return Object.fromEntries(
+    [...alphabet].map((letter, index) => [letter, values[index]])
+  );
+}
+
+const cipherMappings = {
+  'english-ordinal': mappings(ordinalValues),
+  'full-reduction': mappings(
+    ordinalValues.map((value) => ((value - 1) % 9) + 1)
+  ),
+  'reverse-ordinal': mappings(reverseOrdinalValues),
+  'reverse-reduction': mappings(
+    reverseOrdinalValues.map((value) => ((value - 1) % 9) + 1)
+  ),
+  'english-extended': mappings(extendedValues),
+  'reverse-extended': mappings([...extendedValues].reverse()),
+  primes: mappings(primeValues),
+  'reverse-primes': mappings([...primeValues].reverse()),
+  squares: mappings(ordinalValues.map((value) => value ** 2)),
+  'reverse-squares': mappings(reverseOrdinalValues.map((value) => value ** 2)),
+  trigonal: mappings(ordinalValues.map((value) => (value * (value + 1)) / 2)),
+  'reverse-trigonal': mappings(
+    reverseOrdinalValues.map((value) => (value * (value + 1)) / 2)
+  ),
+  satanic: mappings(ordinalValues.map((value) => value + 35)),
+  'reverse-satanic': mappings(reverseOrdinalValues.map((value) => value + 35)),
+  septenary: mappings([
+    1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1
+  ])
+};
 
 function valueFor(phrase, mappings) {
   const normalized = phrase
@@ -33,27 +70,13 @@ function valueFor(phrase, mappings) {
   return total;
 }
 
-export function calculateCoreValues(phrase) {
-  const ordinalValue = valueFor(phrase, ordinal);
-  const reverseValue = valueFor(phrase, reverseOrdinal);
-  const reduction = Object.fromEntries(
-    Object.entries(ordinal).map(([letter, value]) => [
-      letter,
-      ((value - 1) % 9) + 1
+export function calculateBuiltInValues(phrase) {
+  return Object.fromEntries(
+    Object.entries(cipherMappings).map(([cipherId, mapping]) => [
+      cipherId,
+      valueFor(phrase, mapping)
     ])
   );
-  const reverseReduction = Object.fromEntries(
-    Object.entries(reverseOrdinal).map(([letter, value]) => [
-      letter,
-      ((value - 1) % 9) + 1
-    ])
-  );
-  return {
-    'english-ordinal': ordinalValue,
-    'full-reduction': valueFor(phrase, reduction),
-    'reverse-ordinal': reverseValue,
-    'reverse-reduction': valueFor(phrase, reverseReduction)
-  };
 }
 
 function sqlText(value) {
@@ -111,7 +134,7 @@ export function buildSeedSql(input) {
     );
 
     for (const [cipherId, value] of Object.entries(
-      calculateCoreValues(row.phrase)
+      calculateBuiltInValues(row.phrase)
     )) {
       lines.push(
         'insert into public.phrase_cipher_values (phrase_id, cipher_id, value)',

@@ -5,7 +5,13 @@ import {
   ENGLISH_ORDINAL,
   FULL_REDUCTION,
   REVERSE_ORDINAL,
-  REVERSE_REDUCTION
+  REVERSE_REDUCTION,
+  ENGLISH_EXTENDED,
+  PRIMES,
+  SATANIC,
+  SEPTENARY,
+  SQUARES,
+  TRIGONAL
 } from './index';
 
 describe('calculateGematria', () => {
@@ -14,6 +20,15 @@ describe('calculateGematria', () => {
     expect(calculateGematria('Gematria', FULL_REDUCTION).total).toBe(38);
     expect(calculateGematria('Gematria', REVERSE_ORDINAL).total).toBe(142);
     expect(calculateGematria('Gematria', REVERSE_REDUCTION).total).toBe(52);
+  });
+
+  it('calculates the expanded clean-room catalog', () => {
+    expect(calculateGematria('AZ', ENGLISH_EXTENDED).total).toBe(801);
+    expect(calculateGematria('AZ', PRIMES).total).toBe(103);
+    expect(calculateGematria('AZ', SQUARES).total).toBe(677);
+    expect(calculateGematria('AZ', TRIGONAL).total).toBe(352);
+    expect(calculateGematria('AZ', SATANIC).total).toBe(97);
+    expect(calculateGematria('AZ', SEPTENARY).total).toBe(2);
   });
 
   it('normalizes case and diacritics', () => {

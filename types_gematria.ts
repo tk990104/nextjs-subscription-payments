@@ -52,7 +52,23 @@ export type CustomCipherRow = {
   updated_at: string;
 };
 
+export type UserPreferencesRow = {
+  user_id: string;
+  default_cipher_ids: string[];
+  display_settings: Json;
+  created_at: string;
+  updated_at: string;
+};
+
 type GematriaTables = {
+  user_preferences: TableDefinition<
+    UserPreferencesRow,
+    Omit<UserPreferencesRow, 'created_at' | 'updated_at'> & {
+      created_at?: string;
+      updated_at?: string;
+    },
+    Partial<Omit<UserPreferencesRow, 'user_id'>>
+  >;
   custom_ciphers: TableDefinition<
     CustomCipherRow,
     Omit<CustomCipherRow, 'id' | 'created_at' | 'updated_at'> & {
@@ -141,6 +157,13 @@ type GematriaTables = {
 };
 
 type GematriaFunctions = {
+  save_cipher_preferences: {
+    Args: {
+      p_user_id: string;
+      p_cipher_ids: string[];
+    };
+    Returns: string[];
+  };
   create_custom_cipher_with_limit: {
     Args: {
       p_user_id: string;

@@ -36,13 +36,20 @@ code.
   adds valid definitions to calculator and saved-result calculations.
 - `/api/gematria/*` resolves entitlements from the active Stripe product's
   `gematria_plan` metadata and never trusts results or limits from the browser.
+- The built-in catalog includes ordinal/reduction, extended, prime, square,
+  trigonal, Satanic-offset, and mirrored Septenary definitions plus reverse
+  variants where applicable. All definitions are independently implemented
+  from their documented numeric rules.
+- Calculator cipher groups can be selected per session. Researcher, Pro, and
+  AstroNumeric subscribers can persist their default built-in/custom set.
 - `data/corpus.seed.json` and `scripts/build-corpus-seed.mjs` provide a
-  reproducible starter phrase index with precomputed core-cipher values.
+  reproducible starter phrase index with every built-in cipher precomputed.
 
 ## Next milestone
 
 1. Apply and smoke-test all migrations against the selected Supabase project.
-2. Expand the clean-room cipher catalog with compatibility fixtures.
+2. Add historical cipher families only after their definitions have verified
+   compatibility fixtures and provenance notes.
 3. Add a bulk corpus administration screen around the seed generator.
 4. Add Astronomy Engine behind the AstroNumeric entitlement.
 5. Generate fresh database types from the deployed schema.

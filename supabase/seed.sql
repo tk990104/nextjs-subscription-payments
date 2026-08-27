@@ -37,6 +37,83 @@ where phrase = 'Gematria'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 353
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 2356
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 228
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 496
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1050
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2886
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 562
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1514
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 354
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 422
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 32
+from public.phrase_corpus
+where phrase = 'Gematria'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('English', 'foundation', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -68,6 +145,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 34
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 209
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 898
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 217
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 385
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 920
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2027
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 497
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1071
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 319
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 360
+from public.phrase_corpus
+where phrase = 'English'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 32
 from public.phrase_corpus
 where phrase = 'English'
 on conflict (phrase_id, cipher_id) do update
@@ -109,6 +263,83 @@ where phrase = 'Ordinal'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 244
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1529
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 220
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 393
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 987
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2148
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 530
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1132
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 318
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 361
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 20
+from public.phrase_corpus
+where phrase = 'Ordinal'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Reduction', 'foundation', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -140,6 +371,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 53
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 721
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1682
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 341
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 443
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1717
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2392
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 913
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1263
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 424
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 449
+from public.phrase_corpus
+where phrase = 'Reduction'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 38
 from public.phrase_corpus
 where phrase = 'Reduction'
 on conflict (phrase_id, cipher_id) do update
@@ -181,6 +489,83 @@ where phrase = 'Reverse'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 695
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1231
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 301
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 313
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1568
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1703
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 830
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 900
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 337
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 342
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 36
+from public.phrase_corpus
+where phrase = 'Reverse'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Cipher', 'foundation', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -212,6 +597,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 31
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 185
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1219
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 172
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 350
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 759
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1947
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 409
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1025
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 269
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 313
+from public.phrase_corpus
+where phrase = 'Cipher'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 27
 from public.phrase_corpus
 where phrase = 'Cipher'
 on conflict (phrase_id, cipher_id) do update
@@ -253,6 +715,83 @@ where phrase = 'Number'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 487
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1205
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 232
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 296
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1159
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1591
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 616
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 840
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 283
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 299
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 20
+from public.phrase_corpus
+where phrase = 'Number'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Research', 'foundation', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -284,6 +823,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 49
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 302
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 2326
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 237
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 480
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1133
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2807
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 605
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1473
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 357
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 419
+from public.phrase_corpus
+where phrase = 'Research'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 36
 from public.phrase_corpus
 where phrase = 'Research'
 on conflict (phrase_id, cipher_id) do update
@@ -325,6 +941,83 @@ where phrase = 'Knowledge'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 681
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1704
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 287
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 497
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1330
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2707
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 713
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1427
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 411
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 462
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 33
+from public.phrase_corpus
+where phrase = 'Knowledge'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Wisdom', 'concept', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -356,6 +1049,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 34
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 713
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 682
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 268
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 250
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1381
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1273
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 732
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 676
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 293
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 289
+from public.phrase_corpus
+where phrase = 'Wisdom'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 22
 from public.phrase_corpus
 where phrase = 'Wisdom'
 on conflict (phrase_id, cipher_id) do update
@@ -397,6 +1167,83 @@ where phrase = 'Truth'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 798
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 129
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 295
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 137
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1629
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 576
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 858
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 312
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 262
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 223
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 31
+from public.phrase_corpus
+where phrase = 'Truth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Language', 'concept', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -428,6 +1275,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 40
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 401
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 2506
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 202
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 524
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 906
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 3066
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 487
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1607
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 348
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 428
+from public.phrase_corpus
+where phrase = 'Language'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 30
 from public.phrase_corpus
 where phrase = 'Language'
 on conflict (phrase_id, cipher_id) do update
@@ -469,6 +1393,83 @@ where phrase = 'Alphabet'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 317
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 2887
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 198
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 540
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 895
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 3217
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 480
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1684
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 345
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 431
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 27
+from public.phrase_corpus
+where phrase = 'Alphabet'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Calculation', 'concept', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -500,6 +1501,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 69
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 687
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 3093
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 345
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 643
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1651
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 3676
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 881
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1931
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 496
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 571
+from public.phrase_corpus
+where phrase = 'Calculation'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 33
 from public.phrase_corpus
 where phrase = 'Calculation'
 on conflict (phrase_id, cipher_id) do update
@@ -541,6 +1619,83 @@ where phrase = 'History'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1167
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 246
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 385
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 227
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 2080
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1027
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 1097
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 551
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 359
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 320
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 33
+from public.phrase_corpus
+where phrase = 'History'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('January', 'month', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -572,6 +1727,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 45
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1152
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1737
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 307
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 341
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1688
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1931
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 889
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1015
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 335
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 344
+from public.phrase_corpus
+where phrase = 'January'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 20
 from public.phrase_corpus
 where phrase = 'January'
 on conflict (phrase_id, cipher_id) do update
@@ -613,6 +1845,83 @@ where phrase = 'February'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1194
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 2226
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 321
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 412
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1780
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2428
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 938
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1274
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 376
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 400
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 32
+from public.phrase_corpus
+where phrase = 'February'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('March', 'month', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -644,6 +1953,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 29
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 142
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1559
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 128
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 323
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 567
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1890
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 305
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 991
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 218
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 267
+from public.phrase_corpus
+where phrase = 'March'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 16
 from public.phrase_corpus
 where phrase = 'March'
 on conflict (phrase_id, cipher_id) do update
@@ -685,6 +2071,83 @@ where phrase = 'April'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 200
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 979
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 176
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 263
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 806
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1427
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 431
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 753
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 231
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 254
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 16
+from public.phrase_corpus
+where phrase = 'April'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('May', 'month', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -716,6 +2179,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 15
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 741
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 852
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 140
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 147
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 795
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 876
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 417
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 459
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 144
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 147
+from public.phrase_corpus
+where phrase = 'May'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 4
 from public.phrase_corpus
 where phrase = 'May'
 on conflict (phrase_id, cipher_id) do update
@@ -757,6 +2297,83 @@ where phrase = 'June'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 365
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 526
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 156
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 192
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 762
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 978
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 406
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 518
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 190
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 198
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 16
+from public.phrase_corpus
+where phrase = 'June'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('July', 'month', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -788,6 +2405,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 22
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1040
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 148
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 236
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 122
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1310
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 554
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 689
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 297
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 208
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 180
+from public.phrase_corpus
+where phrase = 'July'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 14
 from public.phrase_corpus
 where phrase = 'July'
 on conflict (phrase_id, cipher_id) do update
@@ -829,6 +2523,83 @@ where phrase = 'August'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 908
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1027
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 303
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 234
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1693
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1261
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 891
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 667
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 299
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 283
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 33
+from public.phrase_corpus
+where phrase = 'August'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('September', 'month', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -860,6 +2631,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 50
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 517
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1994
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 329
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 467
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1589
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2588
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 846
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1364
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 418
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 455
+from public.phrase_corpus
+where phrase = 'September'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 39
 from public.phrase_corpus
 where phrase = 'September'
 on conflict (phrase_id, cipher_id) do update
@@ -901,6 +2749,83 @@ where phrase = 'October'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 420
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1776
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 245
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 379
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1212
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2103
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 645
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1107
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 323
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 356
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 26
+from public.phrase_corpus
+where phrase = 'October'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('November', 'month', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -932,6 +2857,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 41
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 652
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1634
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 296
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 410
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1452
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2208
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 773
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1165
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 374
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 402
+from public.phrase_corpus
+where phrase = 'November'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 26
 from public.phrase_corpus
 where phrase = 'November'
 on conflict (phrase_id, cipher_id) do update
@@ -973,6 +2975,83 @@ where phrase = 'December'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 154
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 3059
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 150
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 572
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 597
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 3459
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 326
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1810
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 335
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 441
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 30
+from public.phrase_corpus
+where phrase = 'December'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Sunday', 'weekday', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1004,6 +3083,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 33
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1155
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1356
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 289
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 260
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1640
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1478
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 862
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 778
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 294
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 288
+from public.phrase_corpus
+where phrase = 'Sunday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 20
 from public.phrase_corpus
 where phrase = 'Sunday'
 on conflict (phrase_id, cipher_id) do update
@@ -1045,6 +3201,83 @@ where phrase = 'Monday'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 855
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1422
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 237
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 308
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1232
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1718
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 652
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 904
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 282
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 300
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 11
+from public.phrase_corpus
+where phrase = 'Monday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Tuesday', 'weekday', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1076,6 +3309,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 40
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1310
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1723
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 328
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 315
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1869
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1842
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 982
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 968
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 340
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 339
+from public.phrase_corpus
+where phrase = 'Tuesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 31
 from public.phrase_corpus
 where phrase = 'Tuesday'
 on conflict (phrase_id, cipher_id) do update
@@ -1117,6 +3427,83 @@ where phrase = 'Wednesday'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1369
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 2654
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 328
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 495
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1794
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2955
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 947
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1549
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 415
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 458
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 32
+from public.phrase_corpus
+where phrase = 'Wednesday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Thursday', 'weekday', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1148,6 +3535,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 46
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1403
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1432
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 397
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 326
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 2232
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1800
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 1174
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 950
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 396
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 380
+from public.phrase_corpus
+where phrase = 'Thursday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 37
 from public.phrase_corpus
 where phrase = 'Thursday'
 on conflict (phrase_id, cipher_id) do update
@@ -1189,6 +3653,83 @@ where phrase = 'Friday'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 810
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1701
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 203
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 344
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1083
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2055
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 573
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1077
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 273
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 309
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 23
+from public.phrase_corpus
+where phrase = 'Friday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Saturday', 'weekday', 'calendar', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1220,6 +3761,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 53
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1396
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 2132
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 380
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 360
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 2169
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 2115
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 1139
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 1111
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 389
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 387
+from public.phrase_corpus
+where phrase = 'Saturday'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 32
 from public.phrase_corpus
 where phrase = 'Saturday'
 on conflict (phrase_id, cipher_id) do update
@@ -1261,6 +3879,83 @@ where phrase = 'Sun'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 450
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 54
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 183
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 73
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 998
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 269
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 526
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 148
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 159
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 132
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 13
+from public.phrase_corpus
+where phrase = 'Sun'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Moon', 'astronomy', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1292,6 +3987,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 15
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 210
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 150
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 178
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 158
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 815
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 653
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 436
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 352
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 197
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 191
+from public.phrase_corpus
+where phrase = 'Moon'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 6
 from public.phrase_corpus
 where phrase = 'Moon'
 on conflict (phrase_id, cipher_id) do update
@@ -1333,6 +4105,83 @@ where phrase = 'Mercury'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 1228
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1076
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 349
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 273
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1917
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1458
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 1010
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 772
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 348
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 331
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 27
+from public.phrase_corpus
+where phrase = 'Mercury'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Venus', 'astronomy', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1364,6 +4213,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 27
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 855
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 459
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 273
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 163
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1507
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 778
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 794
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 416
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 256
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 229
+from public.phrase_corpus
+where phrase = 'Venus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 23
 from public.phrase_corpus
 where phrase = 'Venus'
 on conflict (phrase_id, cipher_id) do update
@@ -1405,6 +4331,83 @@ where phrase = 'Earth'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 304
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 1316
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 164
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 287
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 814
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1651
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 433
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 867
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 227
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 258
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 24
+from public.phrase_corpus
+where phrase = 'Earth'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Mars', 'astronomy', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1436,6 +4439,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 30
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 231
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 867
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 171
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 186
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 855
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1017
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 453
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 537
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 191
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 197
+from public.phrase_corpus
+where phrase = 'Mars'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 13
 from public.phrase_corpus
 where phrase = 'Mars'
 on conflict (phrase_id, cipher_id) do update
@@ -1477,6 +4557,83 @@ where phrase = 'Jupiter'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 684
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 612
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 321
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 283
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1627
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1384
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 863
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 737
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 344
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 335
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 35
+from public.phrase_corpus
+where phrase = 'Jupiter'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Saturn', 'astronomy', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1508,6 +4665,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 42
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 741
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 870
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 317
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 214
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1723
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1075
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 908
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 572
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 303
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 279
+from public.phrase_corpus
+where phrase = 'Saturn'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 26
 from public.phrase_corpus
 where phrase = 'Saturn'
 on conflict (phrase_id, cipher_id) do update
@@ -1549,6 +4783,83 @@ where phrase = 'Uranus'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 841
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 869
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 319
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 210
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1764
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1062
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 929
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 565
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 304
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 278
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 25
+from public.phrase_corpus
+where phrase = 'Uranus'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Neptune', 'astronomy', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1585,6 +4896,83 @@ where phrase = 'Neptune'
 on conflict (phrase_id, cipher_id) do update
 set value = excluded.value;
 
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 680
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 913
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 305
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 301
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1539
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 1512
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 817
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 803
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 340
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 339
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 28
+from public.phrase_corpus
+where phrase = 'Neptune'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
 insert into public.phrase_corpus (phrase, category, source, metadata, is_active)
 values ('Pluto', 'astronomy', 'starter', '{"seed":true}'::jsonb, true)
 on conflict (phrase) do update set
@@ -1616,6 +5004,83 @@ set value = excluded.value;
 
 insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
 select id, 'reverse-reduction', 24
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'english-extended', 660
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-extended', 123
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'primes', 281
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-primes', 145
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'squares', 1466
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-squares', 575
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'trigonal', 775
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-trigonal', 313
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'satanic', 259
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'reverse-satanic', 226
+from public.phrase_corpus
+where phrase = 'Pluto'
+on conflict (phrase_id, cipher_id) do update
+set value = excluded.value;
+
+insert into public.phrase_cipher_values (phrase_id, cipher_id, value)
+select id, 'septenary', 20
 from public.phrase_corpus
 where phrase = 'Pluto'
 on conflict (phrase_id, cipher_id) do update

@@ -3,7 +3,11 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import type { PlanEntitlements } from '@/lib/entitlements';
-import { calculateWithCiphers, CORE_CIPHERS } from '@/lib/gematria';
+import {
+  BUILT_IN_CIPHERS,
+  calculateWithCiphers,
+  DEFAULT_CIPHER_IDS
+} from '@/lib/gematria';
 import type { CipherDefinition } from '@/lib/gematria';
 
 export interface CalculatorHistoryItem {
@@ -31,6 +35,7 @@ interface CalculatorProps {
   plan: PlanEntitlements;
   initialHistory: CalculatorHistoryItem[];
   customCiphers: Readonly<CipherDefinition>[];
+  initialCipherIds: string[];
 }
 
 async function responseBody(response: Response) {
@@ -41,7 +46,8 @@ export default function Calculator({
   isAuthenticated,
   plan,
   initialHistory,
-  customCiphers
+  customCiphers,
+  initialCipherIds
 }: CalculatorProps) {
   const [phrase, setPhrase] = useState('Gematria');
   const [history, setHistory] = useState(initialHistory);
@@ -53,14 +59,59 @@ export default function Calculator({
   const [matchStates, setMatchStates] = useState<Record<string, MatchState>>(
     {}
   );
-  const ciphers = useMemo(
-    () => [...CORE_CIPHERS, ...customCiphers],
+  const allCiphers = useMemo(
+    () => [...BUILT_IN_CIPHERS, ...customCiphers],
     [customCiphers]
+  );
+  const validInitialIds = initialCipherIds.filter((id) =>
+    allCiphers.some((cipher) => cipher.id === id)
+  );
+  const [selectedCipherIds, setSelectedCipherIds] = useState<string[]>(
+    validInitialIds.length ? validInitialIds : [...DEFAULT_CIPHER_IDS]
+  );
+  const [preferenceStatus, setPreferenceStatus] = useState<{
+    loading?: boolean;
+    message?: string;
+    error?: boolean;
+  }>({});
+  const ciphers = useMemo(
+    () => allCiphers.filter((cipher) => selectedCipherIds.includes(cipher.id)),
+    [allCiphers, selectedCipherIds]
   );
   const results = useMemo(
     () => calculateWithCiphers(phrase, ciphers),
     [ciphers, phrase]
   );
+
+  function toggleCipher(cipherId: string) {
+    setSelectedCipherIds((current) =>
+      current.includes(cipherId)
+        ? current.length === 1
+          ? current
+          : current.filter((id) => id !== cipherId)
+        : [...current, cipherId]
+    );
+    setPreferenceStatus({});
+  }
+
+  async function savePreferences() {
+    setPreferenceStatus({ loading: true, message: 'Saving…' });
+    try {
+      const response = await fetch('/api/gematria/preferences', {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ cipherIds: selectedCipherIds })
+      });
+      const body = await responseBody(response);
+      if (!response.ok) throw new Error(String(body.error ?? 'Save failed.'));
+      setPreferenceStatus({ message: 'Default cipher selection saved.' });
+    } catch (error) {
+      setPreferenceStatus({
+        error: true,
+        message: error instanceof Error ? error.message : 'Save failed.'
+      });
+    }
+  }
 
   async function saveCalculation() {
     setSaveStatus({ loading: true, message: 'Saving…' });
@@ -151,6 +202,60 @@ export default function Calculator({
         className="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-5 py-4 text-xl text-white shadow-inner placeholder:text-zinc-600"
       />
 
+      <details className="mt-5 rounded-xl border border-zinc-800 bg-zinc-950 p-5">
+        <summary className="cursor-pointer font-semibold">
+          Choose ciphers ({selectedCipherIds.length} selected)
+        </summary>
+        <p className="mt-2 text-sm text-zinc-400">
+          Choose at least one. Your selection updates the calculator instantly.
+        </p>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {allCiphers.map((cipher) => (
+            <label
+              key={cipher.id}
+              className="flex cursor-pointer items-center gap-3 rounded-lg border border-zinc-800 px-3 py-2 hover:border-zinc-600"
+            >
+              <input
+                type="checkbox"
+                checked={selectedCipherIds.includes(cipher.id)}
+                onChange={() => toggleCipher(cipher.id)}
+                className="accent-pink-500"
+              />
+              <span className="text-sm">{cipher.name}</span>
+              {cipher.id.startsWith('custom:') && (
+                <span className="ml-auto text-xs text-pink-400">Custom</span>
+              )}
+            </label>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          {isAuthenticated && plan.features.savedPreferences ? (
+            <button
+              type="button"
+              onClick={savePreferences}
+              disabled={preferenceStatus.loading}
+              className="rounded-lg border border-pink-500 px-4 py-2 text-sm font-semibold text-pink-300 hover:bg-pink-500/10 disabled:opacity-50"
+            >
+              {preferenceStatus.loading ? 'Saving…' : 'Save as my default'}
+            </button>
+          ) : (
+            <p className="text-sm text-zinc-500">
+              Saved selections are included with Researcher and higher plans.
+            </p>
+          )}
+          {preferenceStatus.message && (
+            <p
+              className={
+                preferenceStatus.error ? 'text-red-300' : 'text-emerald-300'
+              }
+              role="status"
+            >
+              {preferenceStatus.message}
+            </p>
+          )}
+        </div>
+      </details>
+
       <div className="mt-4 flex flex-wrap items-center gap-4">
         {isAuthenticated ? (
           <button
@@ -215,7 +320,7 @@ export default function Calculator({
                 )}
               </div>
               {isAuthenticated &&
-                CORE_CIPHERS.some(
+                BUILT_IN_CIPHERS.some(
                   (cipher) => cipher.id === result.cipherId
                 ) && (
                   <button
