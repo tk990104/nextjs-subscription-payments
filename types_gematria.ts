@@ -60,6 +60,14 @@ export type UserPreferencesRow = {
   updated_at: string;
 };
 
+export type ResearchShareRow = {
+  id: string;
+  table_id: string;
+  user_id: string;
+  token: string;
+  created_at: string;
+};
+
 type GematriaTables = {
   user_preferences: TableDefinition<
     UserPreferencesRow,
@@ -103,6 +111,15 @@ type GematriaTables = {
       updated_at?: string;
     },
     Partial<Omit<ResearchEntryRow, 'id' | 'table_id' | 'user_id'>>
+  >;
+  research_shares: TableDefinition<
+    ResearchShareRow,
+    Omit<ResearchShareRow, 'id' | 'token' | 'created_at'> & {
+      id?: string;
+      token?: string;
+      created_at?: string;
+    },
+    Record<string, never>
   >;
   phrase_corpus: TableDefinition<
     {
@@ -157,6 +174,14 @@ type GematriaTables = {
 };
 
 type GematriaFunctions = {
+  create_research_share: {
+    Args: { p_user_id: string; p_table_id: string };
+    Returns: { token: string; created_at: string }[];
+  };
+  delete_research_share: {
+    Args: { p_user_id: string; p_table_id: string };
+    Returns: boolean;
+  };
   save_cipher_preferences: {
     Args: {
       p_user_id: string;

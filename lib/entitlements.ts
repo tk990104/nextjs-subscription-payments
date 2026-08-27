@@ -5,6 +5,8 @@ export type FeatureKey =
   | 'customCiphers'
   | 'customTables'
   | 'savedPreferences'
+  | 'researchExport'
+  | 'shareReports'
   | 'imageExport'
   | 'bibleSearch'
   | 'advancedDates'
@@ -38,6 +40,8 @@ export const PLAN_ENTITLEMENTS: Readonly<Record<PlanId, PlanEntitlements>> =
         customCiphers: false,
         customTables: false,
         savedPreferences: false,
+        researchExport: false,
+        shareReports: false,
         imageExport: false,
         bibleSearch: false,
         advancedDates: false,
@@ -58,6 +62,8 @@ export const PLAN_ENTITLEMENTS: Readonly<Record<PlanId, PlanEntitlements>> =
         customCiphers: true,
         customTables: true,
         savedPreferences: true,
+        researchExport: true,
+        shareReports: true,
         imageExport: true,
         bibleSearch: false,
         advancedDates: true,
@@ -78,6 +84,8 @@ export const PLAN_ENTITLEMENTS: Readonly<Record<PlanId, PlanEntitlements>> =
         customCiphers: true,
         customTables: true,
         savedPreferences: true,
+        researchExport: true,
+        shareReports: true,
         imageExport: true,
         bibleSearch: true,
         advancedDates: true,
@@ -98,6 +106,8 @@ export const PLAN_ENTITLEMENTS: Readonly<Record<PlanId, PlanEntitlements>> =
         customCiphers: true,
         customTables: true,
         savedPreferences: true,
+        researchExport: true,
+        shareReports: true,
         imageExport: true,
         bibleSearch: true,
         advancedDates: true,

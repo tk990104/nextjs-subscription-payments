@@ -23,4 +23,11 @@ describe('subscription entitlements', () => {
     expect(isWithinLimit(9, 10)).toBe(true);
     expect(isWithinLimit(10, 10)).toBe(false);
   });
+
+  it('gates research publishing and export to paid plans', () => {
+    expect(PLAN_ENTITLEMENTS.free.features.researchExport).toBe(false);
+    expect(PLAN_ENTITLEMENTS.free.features.shareReports).toBe(false);
+    expect(PLAN_ENTITLEMENTS.researcher.features.researchExport).toBe(true);
+    expect(PLAN_ENTITLEMENTS.researcher.features.shareReports).toBe(true);
+  });
 });

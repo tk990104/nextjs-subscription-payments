@@ -39,6 +39,10 @@ export default function ResearchWorkspace({
   );
   const [tableStatus, setTableStatus] = useState<FormStatus>({});
   const [entryStatus, setEntryStatus] = useState<FormStatus>({});
+  const [shareLinks, setShareLinks] = useState<Record<string, string>>({});
+  const [shareStatus, setShareStatus] = useState<Record<string, FormStatus>>(
+    {}
+  );
   const canUseTables = plan.features.customTables;
 
   async function createTable(event: FormEvent<HTMLFormElement>) {
@@ -106,6 +110,62 @@ export default function ResearchWorkspace({
         message: error instanceof Error ? error.message : 'Add failed.'
       });
     }
+  }
+
+  async function createShare(tableId: string) {
+    setShareStatus((current) => ({ ...current, [tableId]: { loading: true } }));
+    try {
+      const response = await fetch(
+        `/api/gematria/research-tables/${tableId}/share`,
+        { method: 'POST' }
+      );
+      const body = await responseBody(response);
+      if (!response.ok)
+        throw new Error(String(body.error ?? 'Sharing failed.'));
+      const url = String(body.url);
+      setShareLinks((current) => ({ ...current, [tableId]: url }));
+      setShareStatus((current) => ({
+        ...current,
+        [tableId]: { message: 'Share link ready.' }
+      }));
+      void navigator.clipboard?.writeText(url).catch(() => undefined);
+    } catch (error) {
+      setShareStatus((current) => ({
+        ...current,
+        [tableId]: {
+          error: true,
+          message: error instanceof Error ? error.message : 'Sharing failed.'
+        }
+      }));
+    }
+  }
+
+  async function revokeShare(tableId: string) {
+    setShareStatus((current) => ({ ...current, [tableId]: { loading: true } }));
+    const response = await fetch(
+      `/api/gematria/research-tables/${tableId}/share`,
+      { method: 'DELETE' }
+    );
+    const body = await responseBody(response);
+    if (!response.ok) {
+      setShareStatus((current) => ({
+        ...current,
+        [tableId]: {
+          error: true,
+          message: String(body.error ?? 'Revoke failed.')
+        }
+      }));
+      return;
+    }
+    setShareLinks((current) => {
+      const next = { ...current };
+      delete next[tableId];
+      return next;
+    });
+    setShareStatus((current) => ({
+      ...current,
+      [tableId]: { message: 'Share link revoked.' }
+    }));
   }
 
   return (
@@ -305,6 +365,7 @@ export default function ResearchWorkspace({
                   <th className="pb-3 font-medium">Description</th>
                   <th className="pb-3 font-medium">Entries</th>
                   <th className="pb-3 font-medium">Created</th>
+                  <th className="pb-3 font-medium">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800">
@@ -325,6 +386,57 @@ export default function ResearchWorkspace({
                     </td>
                     <td className="py-4 text-zinc-500">
                       {new Date(table.created_at).toLocaleDateString()}
+                    </td>
+                    <td className="py-4 pl-4">
+                      <div className="flex min-w-52 flex-wrap gap-2">
+                        {plan.features.researchExport && (
+                          <a
+                            href={`/api/gematria/research-tables/${table.id}/export`}
+                            className="rounded border border-zinc-700 px-2 py-1 text-xs hover:border-pink-400"
+                          >
+                            Export CSV
+                          </a>
+                        )}
+                        {plan.features.shareReports && (
+                          <button
+                            type="button"
+                            onClick={() => createShare(table.id)}
+                            disabled={shareStatus[table.id]?.loading}
+                            className="rounded border border-zinc-700 px-2 py-1 text-xs hover:border-pink-400 disabled:opacity-50"
+                          >
+                            {shareLinks[table.id]
+                              ? 'Copy link'
+                              : 'Share report'}
+                          </button>
+                        )}
+                        {shareLinks[table.id] && (
+                          <button
+                            type="button"
+                            onClick={() => revokeShare(table.id)}
+                            className="rounded border border-red-900 px-2 py-1 text-xs text-red-300 hover:border-red-500"
+                          >
+                            Revoke
+                          </button>
+                        )}
+                      </div>
+                      {shareLinks[table.id] && (
+                        <a
+                          href={shareLinks[table.id]}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mt-2 block max-w-52 truncate text-xs text-pink-400"
+                        >
+                          {shareLinks[table.id]}
+                        </a>
+                      )}
+                      {shareStatus[table.id]?.message && (
+                        <p
+                          className={`mt-2 text-xs ${shareStatus[table.id]?.error ? 'text-red-300' : 'text-emerald-300'}`}
+                          role="status"
+                        >
+                          {shareStatus[table.id]?.message}
+                        </p>
+                      )}
                     </td>
                   </tr>
                 ))}

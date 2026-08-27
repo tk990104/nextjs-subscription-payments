@@ -2,14 +2,15 @@
 
 ## Required environment
 
-| Variable                             | Visibility         | Purpose                              |
-| ------------------------------------ | ------------------ | ------------------------------------ |
-| `NEXT_PUBLIC_SUPABASE_URL`           | Browser and server | Hosted Supabase project URL          |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY`      | Browser and server | RLS-constrained public API key       |
-| `SUPABASE_SERVICE_ROLE_KEY`          | Server only        | Entitlement-enforced database writes |
-| `STRIPE_SECRET_KEY`                  | Server only        | Stripe test-mode API access          |
-| `STRIPE_WEBHOOK_SECRET`              | Server only        | Webhook signature verification       |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Browser            | Stripe Checkout initialization       |
+| Variable                             | Visibility         | Purpose                                         |
+| ------------------------------------ | ------------------ | ----------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`           | Browser and server | Hosted Supabase project URL                     |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`      | Browser and server | RLS-constrained public API key                  |
+| `SUPABASE_SERVICE_ROLE_KEY`          | Server only        | Entitlement-enforced database writes            |
+| `GEMATRIA_ADMIN_USER_IDS`            | Server only        | Comma-separated corpus administrator user UUIDs |
+| `STRIPE_SECRET_KEY`                  | Server only        | Stripe test-mode API access                     |
+| `STRIPE_WEBHOOK_SECRET`              | Server only        | Webhook signature verification                  |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Browser            | Stripe Checkout initialization                  |
 
 Never expose `SUPABASE_SERVICE_ROLE_KEY` or `STRIPE_SECRET_KEY` through a
 `NEXT_PUBLIC_` variable.
@@ -27,6 +28,8 @@ Never expose `SUPABASE_SERVICE_ROLE_KEY` or `STRIPE_SECRET_KEY` through a
 
 The corpus seed is generated from `data/corpus.seed.json`. Change the JSON and
 run `npm run corpus:build`; CI runs `npm run corpus:check` to prevent drift.
+Authenticated users listed in `GEMATRIA_ADMIN_USER_IDS` can also import or
+export CSV batches at `/admin/corpus`. Keep this allowlist server-only.
 
 ## Stripe test-mode fixtures
 
@@ -48,6 +51,7 @@ subscription resolve to Free.
 2. Apply migrations and seed the corpus.
 3. Create Stripe test-mode products and register the webhook endpoint.
 4. Deploy the application and complete sign-up, checkout, cancellation, quota,
-   custom-cipher, history, and research-table smoke tests.
+   custom-cipher, history, research-table, CSV-export, and share-link smoke
+   tests.
 5. Confirm RLS with both a Free account and a paid test account.
 6. Only then create live-mode Stripe prices and replace test credentials.

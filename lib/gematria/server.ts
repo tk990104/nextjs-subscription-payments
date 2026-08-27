@@ -39,6 +39,14 @@ export function toJson(value: unknown): Json {
   return JSON.parse(JSON.stringify(value)) as Json;
 }
 
+export function isGematriaAdmin(userId: string) {
+  const configuredIds = (process.env.GEMATRIA_ADMIN_USER_IDS ?? '')
+    .split(',')
+    .map((id) => id.trim())
+    .filter(Boolean);
+  return configuredIds.includes(userId);
+}
+
 type GematriaServerClient = Awaited<ReturnType<typeof createClient>>;
 
 export async function getUserCustomCiphers(supabase: GematriaServerClient) {

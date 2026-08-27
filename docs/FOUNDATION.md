@@ -31,7 +31,10 @@ code.
 - `/calculator` calculates locally, saves authenticated history, and runs
   quota-controlled exact-value searches against the phrase corpus.
 - `/research` creates plan-limited research tables and stores independently
-  recalculated phrases with notes and source URLs.
+  recalculated phrases with notes and source URLs. Paid tables export to CSV
+  and can publish revocable, unguessable read-only report links.
+- `/admin/corpus` imports and exports CSV batches for an explicit server-side
+  administrator allowlist; imports recalculate all built-in values server-side.
 - `/ciphers` creates plan-limited alphabet ciphers, previews their values, and
   adds valid definitions to calculator and saved-result calculations.
 - `/api/gematria/*` resolves entitlements from the active Stripe product's
@@ -50,6 +53,5 @@ code.
 1. Apply and smoke-test all migrations against the selected Supabase project.
 2. Add historical cipher families only after their definitions have verified
    compatibility fixtures and provenance notes.
-3. Add a bulk corpus administration screen around the seed generator.
-4. Add Astronomy Engine behind the AstroNumeric entitlement.
-5. Generate fresh database types from the deployed schema.
+3. Add Astronomy Engine behind the AstroNumeric entitlement.
+4. Generate fresh database types from the deployed schema.
