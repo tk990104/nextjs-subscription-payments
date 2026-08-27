@@ -1,8 +1,10 @@
 import { createClient as createSupabaseAdmin } from '@supabase/supabase-js';
 import { PLAN_ENTITLEMENTS, planFromProductMetadata } from '@/lib/entitlements';
+import { CORE_CIPHERS } from '@/lib/gematria/ciphers';
+import { customCipherFromStored } from '@/lib/gematria/custom';
 import { getSubscription, getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
-import type { GematriaDatabase } from '@/types_gematria';
+import type { CustomCipherRow, GematriaDatabase } from '@/types_gematria';
 import type { Json } from '@/types_db';
 
 export async function getGematriaSession() {
@@ -35,4 +37,34 @@ export function createGematriaAdminClient() {
 
 export function toJson(value: unknown): Json {
   return JSON.parse(JSON.stringify(value)) as Json;
+}
+
+type GematriaServerClient = Awaited<ReturnType<typeof createClient>>;
+
+export async function getUserCustomCiphers(supabase: GematriaServerClient) {
+  const { data, error } = await supabase
+    .from('custom_ciphers')
+    .select('*')
+    .eq('is_enabled', true)
+    .order('created_at');
+  if (error) throw error;
+
+  const rows = (data ?? []) as unknown as CustomCipherRow[];
+  return rows.flatMap((row) => {
+    try {
+      return [customCipherFromStored(row)];
+    } catch (error) {
+      console.error(`Skipping invalid custom cipher ${row.id}.`, error);
+      return [];
+    }
+  });
+}
+
+export async function getUserCalculationCiphers(
+  supabase: GematriaServerClient,
+  includeCustomCiphers: boolean
+) {
+  return includeCustomCiphers
+    ? [...CORE_CIPHERS, ...(await getUserCustomCiphers(supabase))]
+    : [...CORE_CIPHERS];
 }

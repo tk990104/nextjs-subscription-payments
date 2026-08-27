@@ -1,4 +1,6 @@
 import { CORE_CIPHERS } from './ciphers';
+import { customCipherDefinition } from './custom';
+import type { NumberMode } from './types';
 
 export class GematriaValidationError extends Error {}
 
@@ -83,4 +85,23 @@ export function parseMatchInput(input: unknown) {
     throw new GematriaValidationError('Value must be a non-negative integer.');
   }
   return { cipherId, value: body.value };
+}
+
+export function parseCustomCipherInput(input: unknown) {
+  const body = objectInput(input);
+  const values = Array.isArray(body.values) ? body.values : [];
+  const numberMode = body.numberMode as NumberMode;
+  let definition;
+  try {
+    definition = customCipherDefinition(values as number[], numberMode);
+  } catch (error) {
+    throw new GematriaValidationError(
+      error instanceof Error ? error.message : 'Cipher definition is invalid.'
+    );
+  }
+  return {
+    name: cleanString(body.name, 'Name', 80) as string,
+    description: cleanString(body.description, 'Description', 500, false),
+    definition
+  };
 }

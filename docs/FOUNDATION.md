@@ -32,13 +32,17 @@ code.
   quota-controlled exact-value searches against the phrase corpus.
 - `/research` creates plan-limited research tables and stores independently
   recalculated phrases with notes and source URLs.
+- `/ciphers` creates plan-limited alphabet ciphers, previews their values, and
+  adds valid definitions to calculator and saved-result calculations.
 - `/api/gematria/*` resolves entitlements from the active Stripe product's
   `gematria_plan` metadata and never trusts results or limits from the browser.
+- `data/corpus.seed.json` and `scripts/build-corpus-seed.mjs` provide a
+  reproducible starter phrase index with precomputed core-cipher values.
 
 ## Next milestone
 
-1. Add the custom-cipher editor through the same service-role write boundary.
-2. Build an administrator corpus importer and precomputation job.
-3. Expand the clean-room cipher catalog with compatibility fixtures.
+1. Apply and smoke-test all migrations against the selected Supabase project.
+2. Expand the clean-room cipher catalog with compatibility fixtures.
+3. Add a bulk corpus administration screen around the seed generator.
 4. Add Astronomy Engine behind the AstroNumeric entitlement.
-5. Generate fresh database types after applying both gematria migrations.
+5. Generate fresh database types from the deployed schema.

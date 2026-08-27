@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   GematriaValidationError,
+  parseCustomCipherInput,
   parseMatchInput,
   parsePhraseInput,
   parseResearchEntryInput,
@@ -42,5 +43,15 @@ describe('gematria request validation', () => {
     expect(() => parseMatchInput({ cipherId: 'unknown', value: 1 })).toThrow(
       'Cipher is not supported.'
     );
+  });
+
+  it('parses a safe custom cipher definition', () => {
+    const parsed = parseCustomCipherInput({
+      name: ' Ordinal copy ',
+      values: Array.from({ length: 26 }, (_, index) => index + 1),
+      numberMode: 'full'
+    });
+    expect(parsed.name).toBe('Ordinal copy');
+    expect(parsed.definition.values).toHaveLength(26);
   });
 });

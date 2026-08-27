@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import type { PlanEntitlements } from '@/lib/entitlements';
 import { calculateWithCiphers, CORE_CIPHERS } from '@/lib/gematria';
+import type { CipherDefinition } from '@/lib/gematria';
 
 export interface CalculatorHistoryItem {
   id: string;
@@ -29,6 +30,7 @@ interface CalculatorProps {
   isAuthenticated: boolean;
   plan: PlanEntitlements;
   initialHistory: CalculatorHistoryItem[];
+  customCiphers: Readonly<CipherDefinition>[];
 }
 
 async function responseBody(response: Response) {
@@ -38,7 +40,8 @@ async function responseBody(response: Response) {
 export default function Calculator({
   isAuthenticated,
   plan,
-  initialHistory
+  initialHistory,
+  customCiphers
 }: CalculatorProps) {
   const [phrase, setPhrase] = useState('Gematria');
   const [history, setHistory] = useState(initialHistory);
@@ -50,9 +53,13 @@ export default function Calculator({
   const [matchStates, setMatchStates] = useState<Record<string, MatchState>>(
     {}
   );
+  const ciphers = useMemo(
+    () => [...CORE_CIPHERS, ...customCiphers],
+    [customCiphers]
+  );
   const results = useMemo(
-    () => calculateWithCiphers(phrase, CORE_CIPHERS),
-    [phrase]
+    () => calculateWithCiphers(phrase, ciphers),
+    [ciphers, phrase]
   );
 
   async function saveCalculation() {
@@ -188,7 +195,7 @@ export default function Calculator({
               </p>
               <p className="min-h-10 text-sm text-zinc-400">
                 {
-                  CORE_CIPHERS.find((cipher) => cipher.id === result.cipherId)
+                  ciphers.find((cipher) => cipher.id === result.cipherId)
                     ?.description
                 }
               </p>
@@ -207,16 +214,19 @@ export default function Calculator({
                   <span className="text-zinc-500">No mapped characters</span>
                 )}
               </div>
-              {isAuthenticated && (
-                <button
-                  type="button"
-                  onClick={() => findMatches(result.cipherId, result.total)}
-                  disabled={matchState?.loading}
-                  className="mt-4 w-full rounded-lg border border-zinc-600 px-3 py-2 text-sm font-medium hover:border-pink-400 disabled:opacity-50"
-                >
-                  {matchState?.loading ? 'Searching…' : 'Find equal values'}
-                </button>
-              )}
+              {isAuthenticated &&
+                CORE_CIPHERS.some(
+                  (cipher) => cipher.id === result.cipherId
+                ) && (
+                  <button
+                    type="button"
+                    onClick={() => findMatches(result.cipherId, result.total)}
+                    disabled={matchState?.loading}
+                    className="mt-4 w-full rounded-lg border border-zinc-600 px-3 py-2 text-sm font-medium hover:border-pink-400 disabled:opacity-50"
+                  >
+                    {matchState?.loading ? 'Searching…' : 'Find equal values'}
+                  </button>
+                )}
               {matchState?.error && (
                 <p className="mt-3 text-sm text-red-300" role="status">
                   {matchState.error}

@@ -41,7 +41,27 @@ export type ResearchEntryRow = {
   updated_at: string;
 };
 
+export type CustomCipherRow = {
+  id: string;
+  user_id: string;
+  name: string;
+  description: string | null;
+  definition: Json;
+  is_enabled: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
 type GematriaTables = {
+  custom_ciphers: TableDefinition<
+    CustomCipherRow,
+    Omit<CustomCipherRow, 'id' | 'created_at' | 'updated_at'> & {
+      id?: string;
+      created_at?: string;
+      updated_at?: string;
+    },
+    Partial<Omit<CustomCipherRow, 'id' | 'user_id'>>
+  >;
   calculation_history: TableDefinition<
     CalculationHistoryRow,
     Omit<CalculationHistoryRow, 'id' | 'created_at'> & {
@@ -121,6 +141,21 @@ type GematriaTables = {
 };
 
 type GematriaFunctions = {
+  create_custom_cipher_with_limit: {
+    Args: {
+      p_user_id: string;
+      p_name: string;
+      p_description: string | null;
+      p_definition: Json;
+      p_limit: number;
+    };
+    Returns: {
+      id: string | null;
+      created_at: string | null;
+      allowed: boolean;
+      cipher_count: number;
+    }[];
+  };
   consume_daily_usage: {
     Args: {
       p_user_id: string;

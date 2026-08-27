@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Calculator from '@/components/gematria/Calculator';
 import { PLAN_ENTITLEMENTS, planFromProductMetadata } from '@/lib/entitlements';
+import { getUserCustomCiphers } from '@/lib/gematria/server';
 import { getSubscription, getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 
@@ -23,12 +24,17 @@ export default async function CalculatorPage() {
         .order('created_at', { ascending: false })
         .limit(20)
     : { data: [] };
+  const customCiphers =
+    user && PLAN_ENTITLEMENTS[planId].features.customCiphers
+      ? await getUserCustomCiphers(supabase)
+      : [];
 
   return (
     <Calculator
       isAuthenticated={Boolean(user)}
       plan={PLAN_ENTITLEMENTS[planId]}
       initialHistory={history ?? []}
+      customCiphers={customCiphers}
     />
   );
 }

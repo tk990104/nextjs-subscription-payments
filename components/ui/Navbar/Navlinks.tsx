@@ -29,6 +29,9 @@ export default function Navlinks({ user }: NavlinksProps) {
           <Link href="/research" className={s.link}>
             Research
           </Link>
+          <Link href="/ciphers" className={s.link}>
+            Ciphers
+          </Link>
           <Link href="/" className={s.link}>
             Pricing
           </Link>

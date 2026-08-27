@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
-import { calculateWithCiphers, CORE_CIPHERS } from '@/lib/gematria';
+import { calculateWithCiphers } from '@/lib/gematria';
 import {
   createGematriaAdminClient,
   getGematriaSession,
+  getUserCalculationCiphers,
   toJson
 } from '@/lib/gematria/server';
 import {
@@ -42,7 +43,11 @@ export async function POST(request: Request, context: RouteContext) {
       );
     }
     const input = parseResearchEntryInput(await request.json());
-    const results = calculateWithCiphers(input.phrase, CORE_CIPHERS);
+    const ciphers = await getUserCalculationCiphers(
+      session.supabase,
+      session.plan.features.customCiphers
+    );
+    const results = calculateWithCiphers(input.phrase, ciphers);
     const admin = createGematriaAdminClient();
     const { data, error } = await admin.rpc('add_research_entry', {
       p_user_id: session.user.id,
