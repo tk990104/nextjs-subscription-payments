@@ -13,6 +13,11 @@ jobs:
       NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
       NEXT_PUBLIC_SUPABASE_ANON_KEY: validation-anon-key
       SUPABASE_SERVICE_ROLE_KEY: validation-service-role-key
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: pk_test_placeholder
+      STRIPE_SECRET_KEY: sk_test_placeholder
+      STRIPE_WEBHOOK_SECRET: whsec_placeholder
+      GEMATRIA_ADMIN_USER_IDS: 00000000-0000-4000-8000-000000000000
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,4 +29,5 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run corpus:check
+      - run: npm run deployment:check -- --allow-placeholders
       - run: npm run build

@@ -1,5 +1,8 @@
 # Deployment checklist
 
+For the complete preview sequence, use
+[`docs/PREVIEW_DEPLOYMENT.md`](./PREVIEW_DEPLOYMENT.md).
+
 ## Required environment
 
 | Variable                             | Visibility         | Purpose                                         |

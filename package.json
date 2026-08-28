@@ -12,6 +12,8 @@
     "lint": "eslint .",
     "corpus:build": "node scripts/build-corpus-seed.mjs data/corpus.seed.json supabase/seed.sql",
     "corpus:check": "node scripts/build-corpus-seed.mjs data/corpus.seed.json supabase/seed.sql --check",
+    "deployment:check": "node scripts/check-deployment-env.mjs",
+    "smoke": "node scripts/smoke-test.mjs",
     "prettier-fix": "prettier --write .",
     "stripe:login": "stripe login",
     "stripe:listen": "stripe listen --forward-to=localhost:3000/api/webhooks",
