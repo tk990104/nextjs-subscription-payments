@@ -10,14 +10,26 @@ type Price = Tables<'prices'>;
 // Change to control trial period length
 const TRIAL_PERIOD_DAYS = 0;
 
-// Note: supabaseAdmin uses the SERVICE_ROLE_KEY which you must only use in a secure server-side context
-// as it has admin privileges and overwrites RLS policies!
-const supabaseAdmin = createClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
-);
+// The service-role client is created lazily so Next.js can inspect route modules
+// during a deployment build before runtime environment variables are available.
+// It must only be used in secure server-side contexts because it bypasses RLS.
+let supabaseAdmin: ReturnType<typeof createClient<Database>> | null = null;
+
+function getSupabaseAdmin() {
+  if (supabaseAdmin) return supabaseAdmin;
+
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !serviceRoleKey) {
+    throw new Error('Supabase server credentials are not configured.');
+  }
+
+  supabaseAdmin = createClient<Database>(url, serviceRoleKey);
+  return supabaseAdmin;
+}
 
 const upsertProductRecord = async (product: Stripe.Product) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const productData: Product = {
     id: product.id,
     active: product.active,
@@ -40,6 +52,7 @@ const upsertPriceRecord = async (
   retryCount = 0,
   maxRetries = 3
 ) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const priceData: Price = {
     id: price.id,
     product_id: typeof price.product === 'string' ? price.product : '',
@@ -74,6 +87,7 @@ const upsertPriceRecord = async (
 };
 
 const deleteProductRecord = async (product: Stripe.Product) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const { error: deletionError } = await supabaseAdmin
     .from('products')
     .delete()
@@ -84,6 +98,7 @@ const deleteProductRecord = async (product: Stripe.Product) => {
 };
 
 const deletePriceRecord = async (price: Stripe.Price) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const { error: deletionError } = await supabaseAdmin
     .from('prices')
     .delete()
@@ -94,6 +109,7 @@ const deletePriceRecord = async (price: Stripe.Price) => {
 };
 
 const upsertCustomerToSupabase = async (uuid: string, customerId: string) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const { error: upsertError } = await supabaseAdmin
     .from('customers')
     .upsert([{ id: uuid, stripe_customer_id: customerId }]);
@@ -126,6 +142,7 @@ const createOrRetrieveCustomer = async ({
   email: string;
   uuid: string;
 }) => {
+  const supabaseAdmin = getSupabaseAdmin();
   if (!stripe) {
     throw new Error(
       'Stripe API key not configured. Unable to create or retrieve customer.'
@@ -206,6 +223,7 @@ const copyBillingDetailsToCustomer = async (
   uuid: string,
   payment_method: Stripe.PaymentMethod
 ) => {
+  const supabaseAdmin = getSupabaseAdmin();
   if (!stripe) {
     throw new Error(
       'Stripe API key not configured. Unable to update customer.'
@@ -246,6 +264,7 @@ const manageSubscriptionStatusChange = async (
   customerId: string,
   createAction = false
 ) => {
+  const supabaseAdmin = getSupabaseAdmin();
   if (!stripe) {
     throw new Error(
       'Stripe API key not configured. Unable to manage subscription.'
