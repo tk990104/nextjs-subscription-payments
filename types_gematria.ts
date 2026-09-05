@@ -1,0 +1,316 @@
+import type { Database, Json } from '@/types_db';
+
+type TableDefinition<
+  Row extends Record<string, unknown>,
+  Insert extends Record<string, unknown>,
+  Update extends Record<string, unknown>
+> = {
+  Row: Row;
+  Insert: Insert;
+  Update: Update;
+  Relationships: [];
+};
+
+export type CalculationHistoryRow = {
+  id: string;
+  user_id: string;
+  phrase: string;
+  results: Json;
+  created_at: string;
+};
+
+export type ResearchTableRow = {
+  id: string;
+  user_id: string;
+  name: string;
+  description: string | null;
+  color: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type ResearchEntryRow = {
+  id: string;
+  table_id: string;
+  user_id: string;
+  phrase: string;
+  results: Json;
+  notes: string | null;
+  source_url: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type CustomCipherRow = {
+  id: string;
+  user_id: string;
+  name: string;
+  description: string | null;
+  definition: Json;
+  is_enabled: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+export type UserPreferencesRow = {
+  user_id: string;
+  default_cipher_ids: string[];
+  display_settings: Json;
+  created_at: string;
+  updated_at: string;
+};
+
+export type ResearchShareRow = {
+  id: string;
+  table_id: string;
+  user_id: string;
+  token: string;
+  created_at: string;
+};
+
+export type AstroEventRow = {
+  id: string;
+  user_id: string;
+  event_name: string;
+  event_time: string;
+  location_name: string | null;
+  latitude: number;
+  longitude: number;
+  chart: Json;
+  gematria_results: Json;
+  created_at: string;
+};
+
+type GematriaTables = {
+  astro_events: TableDefinition<
+    AstroEventRow,
+    Omit<AstroEventRow, 'id' | 'created_at'> & {
+      id?: string;
+      created_at?: string;
+    },
+    Record<string, never>
+  >;
+  user_preferences: TableDefinition<
+    UserPreferencesRow,
+    Omit<UserPreferencesRow, 'created_at' | 'updated_at'> & {
+      created_at?: string;
+      updated_at?: string;
+    },
+    Partial<Omit<UserPreferencesRow, 'user_id'>>
+  >;
+  custom_ciphers: TableDefinition<
+    CustomCipherRow,
+    Omit<CustomCipherRow, 'id' | 'created_at' | 'updated_at'> & {
+      id?: string;
+      created_at?: string;
+      updated_at?: string;
+    },
+    Partial<Omit<CustomCipherRow, 'id' | 'user_id'>>
+  >;
+  calculation_history: TableDefinition<
+    CalculationHistoryRow,
+    Omit<CalculationHistoryRow, 'id' | 'created_at'> & {
+      id?: string;
+      created_at?: string;
+    },
+    Partial<Omit<CalculationHistoryRow, 'id' | 'user_id'>>
+  >;
+  research_tables: TableDefinition<
+    ResearchTableRow,
+    Omit<ResearchTableRow, 'id' | 'created_at' | 'updated_at'> & {
+      id?: string;
+      created_at?: string;
+      updated_at?: string;
+    },
+    Partial<Omit<ResearchTableRow, 'id' | 'user_id'>>
+  >;
+  research_entries: TableDefinition<
+    ResearchEntryRow,
+    Omit<ResearchEntryRow, 'id' | 'created_at' | 'updated_at'> & {
+      id?: string;
+      created_at?: string;
+      updated_at?: string;
+    },
+    Partial<Omit<ResearchEntryRow, 'id' | 'table_id' | 'user_id'>>
+  >;
+  research_shares: TableDefinition<
+    ResearchShareRow,
+    Omit<ResearchShareRow, 'id' | 'token' | 'created_at'> & {
+      id?: string;
+      token?: string;
+      created_at?: string;
+    },
+    Record<string, never>
+  >;
+  phrase_corpus: TableDefinition<
+    {
+      id: number;
+      phrase: string;
+      category: string | null;
+      source: string | null;
+      metadata: Json;
+      is_active: boolean;
+      created_at: string;
+      updated_at: string;
+    },
+    {
+      id?: number;
+      phrase: string;
+      category?: string | null;
+      source?: string | null;
+      metadata?: Json;
+      is_active?: boolean;
+      created_at?: string;
+      updated_at?: string;
+    },
+    {
+      phrase?: string;
+      category?: string | null;
+      source?: string | null;
+      metadata?: Json;
+      is_active?: boolean;
+      updated_at?: string;
+    }
+  >;
+  phrase_cipher_values: TableDefinition<
+    { phrase_id: number; cipher_id: string; value: number },
+    { phrase_id: number; cipher_id: string; value: number },
+    { value?: number }
+  >;
+  usage_counters: TableDefinition<
+    {
+      user_id: string;
+      usage_date: string;
+      usage_kind: string;
+      usage_count: number;
+    },
+    {
+      user_id: string;
+      usage_date?: string;
+      usage_kind: string;
+      usage_count?: number;
+    },
+    { usage_count?: number }
+  >;
+};
+
+type GematriaFunctions = {
+  save_astro_event_with_limit: {
+    Args: {
+      p_user_id: string;
+      p_event_name: string;
+      p_event_time: string;
+      p_location_name: string | null;
+      p_latitude: number;
+      p_longitude: number;
+      p_chart: Json;
+      p_gematria_results: Json;
+      p_limit: number;
+    };
+    Returns: {
+      id: string | null;
+      created_at: string | null;
+      allowed: boolean;
+      event_count: number;
+    }[];
+  };
+  create_research_share: {
+    Args: { p_user_id: string; p_table_id: string };
+    Returns: { token: string; created_at: string }[];
+  };
+  delete_research_share: {
+    Args: { p_user_id: string; p_table_id: string };
+    Returns: boolean;
+  };
+  save_cipher_preferences: {
+    Args: {
+      p_user_id: string;
+      p_cipher_ids: string[];
+    };
+    Returns: string[];
+  };
+  create_custom_cipher_with_limit: {
+    Args: {
+      p_user_id: string;
+      p_name: string;
+      p_description: string | null;
+      p_definition: Json;
+      p_limit: number;
+    };
+    Returns: {
+      id: string | null;
+      created_at: string | null;
+      allowed: boolean;
+      cipher_count: number;
+    }[];
+  };
+  consume_daily_usage: {
+    Args: {
+      p_user_id: string;
+      p_usage_kind: string;
+      p_limit: number | null;
+    };
+    Returns: number;
+  };
+  save_calculation_with_limit: {
+    Args: {
+      p_user_id: string;
+      p_phrase: string;
+      p_results: Json;
+      p_limit: number;
+    };
+    Returns: {
+      id: string | null;
+      created_at: string | null;
+      allowed: boolean;
+      entry_count: number;
+    }[];
+  };
+  create_research_table_with_limit: {
+    Args: {
+      p_user_id: string;
+      p_name: string;
+      p_description: string | null;
+      p_color: string | null;
+      p_limit: number;
+    };
+    Returns: {
+      id: string | null;
+      created_at: string | null;
+      allowed: boolean;
+      table_count: number;
+    }[];
+  };
+  add_research_entry: {
+    Args: {
+      p_user_id: string;
+      p_table_id: string;
+      p_phrase: string;
+      p_results: Json;
+      p_notes: string | null;
+      p_source_url: string | null;
+    };
+    Returns: {
+      id: string;
+      created_at: string;
+    }[];
+  };
+};
+
+type PublicSchema = Database['public'];
+
+export type GematriaDatabase = {
+  public: {
+    Tables: {
+      customers: PublicSchema['Tables']['customers'];
+      prices: PublicSchema['Tables']['prices'];
+      products: PublicSchema['Tables']['products'];
+      subscriptions: PublicSchema['Tables']['subscriptions'];
+      users: PublicSchema['Tables']['users'];
+    } & GematriaTables;
+    Views: PublicSchema['Views'];
+    Functions: GematriaFunctions;
+    Enums: PublicSchema['Enums'];
+    CompositeTypes: PublicSchema['CompositeTypes'];
+  };
+};

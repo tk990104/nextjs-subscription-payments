@@ -2,7 +2,7 @@ import { toDateTime } from '@/utils/helpers';
 import { stripe } from '@/utils/stripe/config';
 import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
-import type { Database, Tables, TablesInsert } from 'types_db';
+import type { Database, Json, Tables, TablesInsert } from 'types_db';
 
 type Product = Tables<'products'>;
 type Price = Tables<'prices'>;
@@ -10,14 +10,26 @@ type Price = Tables<'prices'>;
 // Change to control trial period length
 const TRIAL_PERIOD_DAYS = 0;
 
-// Note: supabaseAdmin uses the SERVICE_ROLE_KEY which you must only use in a secure server-side context
-// as it has admin privileges and overwrites RLS policies!
-const supabaseAdmin = createClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
-);
+// The service-role client is created lazily so Next.js can inspect route modules
+// during a deployment build before runtime environment variables are available.
+// It must only be used in secure server-side contexts because it bypasses RLS.
+let supabaseAdmin: ReturnType<typeof createClient<Database>> | null = null;
+
+function getSupabaseAdmin() {
+  if (supabaseAdmin) return supabaseAdmin;
+
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !serviceRoleKey) {
+    throw new Error('Supabase server credentials are not configured.');
+  }
+
+  supabaseAdmin = createClient<Database>(url, serviceRoleKey);
+  return supabaseAdmin;
+}
 
 const upsertProductRecord = async (product: Stripe.Product) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const productData: Product = {
     id: product.id,
     active: product.active,
@@ -40,6 +52,7 @@ const upsertPriceRecord = async (
   retryCount = 0,
   maxRetries = 3
 ) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const priceData: Price = {
     id: price.id,
     product_id: typeof price.product === 'string' ? price.product : '',
@@ -74,6 +87,7 @@ const upsertPriceRecord = async (
 };
 
 const deleteProductRecord = async (product: Stripe.Product) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const { error: deletionError } = await supabaseAdmin
     .from('products')
     .delete()
@@ -84,28 +98,35 @@ const deleteProductRecord = async (product: Stripe.Product) => {
 };
 
 const deletePriceRecord = async (price: Stripe.Price) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const { error: deletionError } = await supabaseAdmin
     .from('prices')
     .delete()
     .eq('id', price.id);
-  if (deletionError) throw new Error(`Price deletion failed: ${deletionError.message}`);
+  if (deletionError)
+    throw new Error(`Price deletion failed: ${deletionError.message}`);
   console.log(`Price deleted: ${price.id}`);
 };
 
 const upsertCustomerToSupabase = async (uuid: string, customerId: string) => {
+  const supabaseAdmin = getSupabaseAdmin();
   const { error: upsertError } = await supabaseAdmin
     .from('customers')
     .upsert([{ id: uuid, stripe_customer_id: customerId }]);
 
   if (upsertError)
-    throw new Error(`Supabase customer record creation failed: ${upsertError.message}`);
+    throw new Error(
+      `Supabase customer record creation failed: ${upsertError.message}`
+    );
 
   return customerId;
 };
 
 const createCustomerInStripe = async (uuid: string, email: string) => {
   if (!stripe) {
-    throw new Error('Stripe API key not configured. Unable to create customer.');
+    throw new Error(
+      'Stripe API key not configured. Unable to create customer.'
+    );
   }
   const customerData = { metadata: { supabaseUUID: uuid }, email: email };
   const newCustomer = await stripe.customers.create(customerData);
@@ -121,8 +142,11 @@ const createOrRetrieveCustomer = async ({
   email: string;
   uuid: string;
 }) => {
+  const supabaseAdmin = getSupabaseAdmin();
   if (!stripe) {
-    throw new Error('Stripe API key not configured. Unable to create or retrieve customer.');
+    throw new Error(
+      'Stripe API key not configured. Unable to create or retrieve customer.'
+    );
   }
 
   // Check if the customer already exists in Supabase
@@ -199,23 +223,40 @@ const copyBillingDetailsToCustomer = async (
   uuid: string,
   payment_method: Stripe.PaymentMethod
 ) => {
+  const supabaseAdmin = getSupabaseAdmin();
   if (!stripe) {
-    throw new Error('Stripe API key not configured. Unable to update customer.');
+    throw new Error(
+      'Stripe API key not configured. Unable to update customer.'
+    );
   }
   //Todo: check this assertion
   const customer = payment_method.customer as string;
   const { name, phone, address } = payment_method.billing_details;
   if (!name || !phone || !address) return;
-  //@ts-ignore
-  await stripe.customers.update(customer, { name, phone, address });
+  await stripe.customers.update(customer, {
+    name,
+    phone,
+    address: {
+      city: address.city ?? undefined,
+      country: address.country ?? undefined,
+      line1: address.line1 ?? undefined,
+      line2: address.line2 ?? undefined,
+      postal_code: address.postal_code ?? undefined,
+      state: address.state ?? undefined
+    }
+  });
+  const paymentDetails = payment_method[
+    payment_method.type as keyof Stripe.PaymentMethod
+  ] as unknown as Json;
   const { error: updateError } = await supabaseAdmin
     .from('users')
     .update({
       billing_address: { ...address },
-      payment_method: { ...payment_method[payment_method.type] }
+      payment_method: paymentDetails
     })
     .eq('id', uuid);
-  if (updateError) throw new Error(`Customer update failed: ${updateError.message}`);
+  if (updateError)
+    throw new Error(`Customer update failed: ${updateError.message}`);
 };
 
 const manageSubscriptionStatusChange = async (
@@ -223,8 +264,11 @@ const manageSubscriptionStatusChange = async (
   customerId: string,
   createAction = false
 ) => {
+  const supabaseAdmin = getSupabaseAdmin();
   if (!stripe) {
-    throw new Error('Stripe API key not configured. Unable to manage subscription.');
+    throw new Error(
+      'Stripe API key not configured. Unable to manage subscription.'
+    );
   }
   // Get customer's UUID from mapping table.
   const { data: customerData, error: noCustomerError } = await supabaseAdmin
@@ -248,9 +292,7 @@ const manageSubscriptionStatusChange = async (
     metadata: subscription.metadata,
     status: subscription.status,
     price_id: subscription.items.data[0].price.id,
-    //TODO check quantity on subscription
-    // @ts-ignore
-    quantity: subscription.quantity,
+    quantity: subscription.items.data[0]?.quantity ?? 1,
     cancel_at_period_end: subscription.cancel_at_period_end,
     cancel_at: subscription.cancel_at
       ? toDateTime(subscription.cancel_at).toISOString()
@@ -280,7 +322,9 @@ const manageSubscriptionStatusChange = async (
     .from('subscriptions')
     .upsert([subscriptionData]);
   if (upsertError)
-    throw new Error(`Subscription insert/update failed: ${upsertError.message}`);
+    throw new Error(
+      `Subscription insert/update failed: ${upsertError.message}`
+    );
   console.log(
     `Inserted/updated subscription [${subscription.id}] for user [${uuid}]`
   );
@@ -288,7 +332,6 @@ const manageSubscriptionStatusChange = async (
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.
   if (createAction && subscription.default_payment_method && uuid)
-    //@ts-ignore
     await copyBillingDetailsToCustomer(
       uuid,
       subscription.default_payment_method as Stripe.PaymentMethod
