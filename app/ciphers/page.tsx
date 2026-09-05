@@ -7,7 +7,7 @@ import { getSubscription, getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 
 export const metadata: Metadata = {
-  title: 'Cipher Studio | Gematria Research Platform',
+  title: 'Cipher Studio | Cipher Forge',
   description: 'Create and preview custom English gematria ciphers.'
 };
 

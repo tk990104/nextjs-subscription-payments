@@ -6,7 +6,7 @@ import { getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 
 export const metadata: Metadata = {
-  title: 'Corpus Administration | Gematria Research Platform'
+  title: 'Corpus Administration | Cipher Forge'
 };
 
 export default async function CorpusAdminPage() {

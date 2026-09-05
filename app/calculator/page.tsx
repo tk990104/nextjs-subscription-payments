@@ -8,7 +8,7 @@ import { createClient } from '@/utils/supabase/server';
 import type { UserPreferencesRow } from '@/types_gematria';
 
 export const metadata: Metadata = {
-  title: 'Calculator | Gematria Research Platform',
+  title: 'Calculator | Cipher Forge',
   description: 'Compare phrases across a clean-room English cipher catalog.'
 };
 

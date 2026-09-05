@@ -1,7 +1,6 @@
 'use client';
 
 import Button from '@/components/ui/Button';
-import LogoCloud from '@/components/ui/LogoCloud';
 import type { Tables } from '@/types_db';
 import { getStripe } from '@/utils/stripe/client';
 import { checkoutWithStripe } from '@/utils/stripe/server';
@@ -82,24 +81,125 @@ export default function Pricing({ user, products, subscription }: Props) {
   };
 
   if (!products.length) {
+    const planPreviews = [
+      {
+        name: 'Free',
+        price: '$0',
+        description: 'A fast, transparent calculator for everyday exploration.',
+        features: [
+          '15 built-in ciphers',
+          'Character breakdowns',
+          '50 saved calculations'
+        ],
+        href: '/calculator',
+        action: 'Start calculating',
+        featured: false
+      },
+      {
+        name: 'Researcher',
+        price: 'Coming soon',
+        description: 'Save your trail and search deeper connections.',
+        features: [
+          '8 custom ciphers',
+          '4 research tables',
+          'CSV export and sharing'
+        ],
+        href: '/signin/signup',
+        action: 'Create an account',
+        featured: true
+      },
+      {
+        name: 'Pro',
+        price: 'Coming soon',
+        description: 'Build reusable studies and original cipher systems.',
+        features: [
+          'Unlimited corpus matching',
+          '50 custom ciphers',
+          'Bible search tools'
+        ],
+        href: '/signin/signup',
+        action: 'Create an account',
+        featured: false
+      },
+      {
+        name: 'AstroNumeric',
+        price: 'Coming soon',
+        description: 'Add planetary timing to the complete research suite.',
+        features: [
+          'Everything in Pro',
+          'Planetary event charts',
+          '1,000 saved astro events'
+        ],
+        href: '/signin/signup',
+        action: 'Create an account',
+        featured: false
+      }
+    ];
+
     return (
-      <section className="bg-black">
-        <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
-          <div className="sm:flex sm:flex-col sm:align-center"></div>
-          <p className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
-            No subscription pricing plans found. Create them in your{' '}
-            <a
-              className="text-pink-500 underline"
-              href="https://dashboard.stripe.com/products"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Stripe Dashboard
-            </a>
-            .
-          </p>
+      <section className="bg-zinc-950">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-pink-300">
+              Plans built for the depth you need
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+              Start free. Expand when the research does.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-zinc-400">
+              Paid subscriptions are being connected now. Free calculation is
+              already live, and an account keeps you ready for saved tools.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {planPreviews.map((plan) => (
+              <article
+                key={plan.name}
+                className={`flex flex-col rounded-2xl border p-6 ${
+                  plan.featured
+                    ? 'border-pink-400/50 bg-pink-500/[0.07]'
+                    : 'border-white/10 bg-white/[0.025]'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-lg font-semibold text-white">
+                    {plan.name}
+                  </h3>
+                  {plan.featured && (
+                    <span className="rounded-full bg-pink-400/15 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-pink-200">
+                      Popular
+                    </span>
+                  )}
+                </div>
+                <p className="mt-5 text-2xl font-semibold text-white">
+                  {plan.price}
+                </p>
+                <p className="mt-3 min-h-12 text-sm leading-6 text-zinc-400">
+                  {plan.description}
+                </p>
+                <ul className="mt-6 flex-1 space-y-3 text-sm text-zinc-300">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex gap-2">
+                      <span className="text-pink-300">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={plan.href}
+                  className={`mt-7 inline-flex justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition ${
+                    plan.featured
+                      ? 'bg-white text-zinc-950 hover:bg-pink-100'
+                      : 'border border-white/15 text-white hover:bg-white/10'
+                  }`}
+                >
+                  {plan.action}
+                </a>
+              </article>
+            ))}
+          </div>
         </div>
-        <LogoCloud />
       </section>
     );
   } else {
@@ -111,8 +211,8 @@ export default function Pricing({ user, products, subscription }: Props) {
               Pricing Plans
             </h1>
             <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-              Start building for free, then add a site plan to go live. Account
-              plans unlock additional features.
+              Calculate for free, then unlock deeper research tools as your
+              workspace grows.
             </p>
             <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
               {intervals.includes('month') && (
@@ -196,7 +296,6 @@ export default function Pricing({ user, products, subscription }: Props) {
               );
             })}
           </div>
-          <LogoCloud />
         </div>
       </section>
     );

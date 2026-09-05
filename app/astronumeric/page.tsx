@@ -7,7 +7,7 @@ import { getSubscription, getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 
 export const metadata: Metadata = {
-  title: 'AstroNumeric Laboratory | Gematria Research Platform',
+  title: 'AstroNumeric Laboratory | Cipher Forge',
   description: 'Combine planetary event charts with gematria research.'
 };
 

@@ -7,7 +7,7 @@ import { getSubscription, getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 
 export const metadata: Metadata = {
-  title: 'Research Workspace | Gematria Research Platform',
+  title: 'Research Workspace | Cipher Forge',
   description: 'Organize gematria findings into saved research tables.'
 };
 
